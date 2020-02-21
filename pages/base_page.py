@@ -1,9 +1,5 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
+
 
 
 class BasePage():
@@ -17,18 +13,12 @@ class BasePage():
 
     def mail_login(self):
         fill_mail = self.browser.find_element(*BasePageLocators.MAIL_LOGIN)
-        fill_mail.send_keys("sidorov.avk")
+        fill_mail.send_keys(*BasePageLocators.LOGIN_NAME)
         submit_mail = self.browser.find_element(*BasePageLocators.MAIL_SUBMIT)
         submit_mail.click()
 
     def password_login(self):
         fill_password = self.browser.find_element(*BasePageLocators.PASSWORD_LOGIN)
-        fill_password.send_keys("")
+        fill_password.send_keys(*BasePageLocators.PASSWORD)
         submit_password = self.browser.find_element(*BasePageLocators.PASSWORD_SUBMIT)
         submit_password.click()
-
-    def user_login(self):
-        self.mail_login()
-
-    def user_login_password(self):
-        self.password_login()

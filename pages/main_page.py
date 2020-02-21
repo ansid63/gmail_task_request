@@ -1,11 +1,12 @@
 from .base_page import BasePage
-from .locators import MainPageLocators
+
+from selenium.webdriver.common.by import By
 
 
 
 class MainPage(BasePage):
-    #def __init__(self, *args, **kwargs):
-     #   super(MainPage, self).__init__(*args, **kwargs)
-
     def check_letters(self):
-        letters_from = self.browser.find_element(*MainPageLocators.TARGET_OBJECT)
+        letters_from = self.browser.find_elements(By.CSS_SELECTOR, 'span[title="noreply@moikrug.ru"]')
+        #На случай проверки на количество assert (len(letters_from) == 1), "Неее их тутъ больше"
+        print("Количество писем от адресата", len(letters_from))
+
